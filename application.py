@@ -24,9 +24,12 @@ db = scoped_session(sessionmaker(bind=engine))
 @app.route("/")
 def index():
     status = "Loggedout"
-    if "user_email" in session:
-        status = ""
-    return render_template("index.html", status=status, user_email=session["user_email"])
+    try:
+        user_email=session["user_email"]
+        status=""
+    except KeyError:
+        user_email=""
+    return render_template("index.html", status=status, user_email=user_email)
 
 
 # Login Page

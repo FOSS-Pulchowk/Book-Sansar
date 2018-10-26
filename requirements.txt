@@ -2,3 +2,5 @@ Flask
 Flask-Session
 psycopg2
 SQLAlchemy
+requests
+# Not adding Werkzeug as it is a dependency fo Flask
