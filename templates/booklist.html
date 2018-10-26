@@ -1,10 +1,27 @@
 {% extends "base.html" %}
 
-{% block body %}
-    <h1 class="h3 font-weight-normal">Matching Results: </h1>
+{% block anchor %}
+    <a class="nav-link " href='{{ url_for('logout') }}'>
+        Logout <strong>{{ user_email }}</strong>
+    </a>
+{% endblock %}
 
+
+{% block body %}
     {% if message %}
+
+        <div class="alert alert-danger" role="alert">
+            <h4 class="alert-heading">Oops!! Error Occurred</h4><br>
+            <p>
+              {{ error_message }}
+            </p>
+        </div>
+        <br>
         <h4>{{ message }} </h4>
+
+    {% else %}
+        <h1 class="h3 font-weight-normal">Matching Results: </h1>
+
     {% endif %}
 
     {% for book in book_list %}

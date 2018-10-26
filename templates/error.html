@@ -9,15 +9,4 @@
         </p>
     </div>
 
-
-    {% if message %}
-        <h4>{{ message }} </h4>
-
-        {% for book in book_list %}
-            <ul>
-                <a href="{{ url_for('detail', book_id = book.id) }}"> <b>{{ book.title }}</b> by {{ book.author }} </a>
-            </ul>
-        {% endfor %}
-    {% endif %}
-
 {% endblock %}

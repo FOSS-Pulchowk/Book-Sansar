@@ -1,21 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+{% extends 'base.html' %}
 
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-        <title>Login</title>
-    </head>
 
-    <body class="container text-center">
-        <form class="form-signin" action="{{ url_for('search') }}">
-            <img class="mb-4" src="https://www.thebookdesigner.com/wp-content/uploads/2018/01/bigstock-174690325.jpg" width="40%">
-            <h1 class="h3 mb-3 font-weight-normal"> Please Sign In</h1>
+{% block body %}
+
+    {% if error_message %}
+        <div class="alert alert-danger" role="alert">
+            <h4 class="alert-heading">Error Occurred!!</h4><br>
+            <p>
+                {{ error_message }}
+            </p>
+        </div>
+
+    {% elif message %}
+        <div class="alert alert-success" role="alert">
+            <h4 class="alert-heading">Registered!!</h4><br>
+            <p>
+                You've successfully registered for Book Sansar. Please login with your credentials.
+            </p>
+        </div>
+    {% endif %}
+
+    <div class="text-center">
+        {% if work =='Login' %}
+            <form class="form-signin" action="{{ url_for('search') }} " method="post">
+            <h1 class="h3 mb-3 font-weight-normal"> Please Login</h1>
+
+        {% else %}
+            <form class="form-signin" action="{{ url_for('login') }}" method="post">
+            <h1 class="h3 mb-3 font-weight-normal"> Please Register</h1>
+        {% endif %}
+
 
             <label class="sr-only" for="inputEmail"> Email Address</label>
             <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="" name="Email">
-
             <label class="sr-only" for="inputPassword"> Password </label>
             <input id="inputPassword" class="form-control" placeholder="Password" required="" type="password" name="Password">
 
@@ -25,13 +42,19 @@
             </label>
             </div>
             -->
-            <button class="btn btn-lg btn-primary btn-block" type="submit"> Sign In </button>
+            <button class="btn btn-lg btn-primary btn-block" type="submit"> {{ work }} </button>
 
-            <p> Don't have a account ?
-                <a href="#">Sign Up</a>
-            </p>
+            {% if work=="Login" %}
+                <p> Don't have a account ?
+                    <a href="{{ url_for('register') }}">Register</a>
+                </p>
+            {% endif %}
 
             <p class="mt-5 mb-3 text-muted">© 2018</p>
+
         </form>
-    </body>
-</html>
+
+    </div>
+
+{% endblock %}
+

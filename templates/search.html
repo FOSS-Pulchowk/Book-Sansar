@@ -1,9 +1,17 @@
 {% extends "base.html" %}
 
+
+{% block anchor %}
+    <a class="nav-link " href='{{ url_for('logout') }}'>
+        Logout <strong>{{ user_email }}</strong>
+    </a>
+{% endblock %}
+
+
 {% block body %}
     <h1>Search A Book</h1>
 
-    <form action="{{ url_for('books') }}" method="post">
+    <form action="{{ url_for('booklist') }}" method="post">
 
         <div class="form-group">
             <label for="SearchType">Search By:</label>

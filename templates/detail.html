@@ -1,5 +1,13 @@
 {% extends "base.html" %}
 
+
+{% block anchor %}
+    <a class="nav-link " href='{{ url_for('logout') }}'>
+        Logout <strong>{{ user_email }}</strong>
+    </a>
+{% endblock %}
+
+
 {% block body %}
     <h1>Book Details:</h1>
     <p>
@@ -14,11 +22,12 @@
     Total Number of Ratings : {{ ratings_count }} <br>
     Average Rating : {{ average_rating }}<br>
     </p>
-    <h3>Reviews</h3>
+
+    <h3>Reviews:</h3>
     <div class="rating_local">
-        {% for user, review in users %}
-            <h5>{{ user }}</h5>
-            <b>Rating: </b>{{ review.rating }} <br>
+        {% for user_email, review in users %}
+            <h5>{{ user_email }}</h5>
+            <strong>Rating: </strong> {{ review.rating }} <br>
             <h6>Comment:</h6>
             <p>
                 {{ review.comment }}
@@ -31,8 +40,6 @@
     <form action = "{{ url_for('detail', book_id=book.id) }}" method="post">
 
         <div class="form-group">
-            <label for="user_id">User ID</label>
-            <input name="user_id" type="number" id="user_id"><br>
             <label for="rating">Rating ( Out of 5 )</label>
             <select class="form-control" name="rating" id="rating">
                 {%  for count in range(5) %}
