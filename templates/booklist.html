@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block body %}
+    <h1 class="h3 font-weight-normal">Matching Results: </h1>
+
+    {% if message %}
+        <h4>{{ message }} </h4>
+    {% endif %}
+
+    {% for book in book_list %}
+        <ul>
+            <a href="{{ url_for('detail', book_id = book.id) }}"> <b>{{ book.title }}</b> by {{ book.author }} </a>
+        </ul>
+    {% endfor %}
+
+{% endblock %}

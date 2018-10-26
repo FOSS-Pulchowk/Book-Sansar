@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block body %}
+    <br>
+    <div class="alert alert-danger" role="alert">
+        <h4 class="alert-heading">Oops!! Error Occurred</h4><br>
+        <p>
+          {{ error_message }}
+        </p>
+    </div>
+
+
+    {% if message %}
+        <h4>{{ message }} </h4>
+
+        {% for book in book_list %}
+            <ul>
+                <a href="{{ url_for('detail', book_id = book.id) }}"> <b>{{ book.title }}</b> by {{ book.author }} </a>
+            </ul>
+        {% endfor %}
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,7 @@
+.navbar {
+    border-radius: 0;
+}
+
+a.navbar-brand {
+    font-family: 'Pacifico', cursive;
+}
